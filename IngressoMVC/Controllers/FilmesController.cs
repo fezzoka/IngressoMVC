@@ -175,13 +175,17 @@ namespace IngressoMVC.Controllers
 
             public IActionResult Buscar(string FiltroDeBusca)
             {
-                var result = _context.Filmes.ToList();
+                var result = _context.Filmes
+                .Include(filme => filme.AtoresFilmes).ThenInclude(af => af.Ator)
+                .ToList();
 
                 if(!string.IsNullOrEmpty(FiltroDeBusca))
                 {
                 FiltroDeBusca = FiltroDeBusca.ToLower();
                 var resultadoDaBusca = result
-                    .Where(x => x.Titulo.ToLower().Contains(FiltroDeBusca) || x.Descricao.ToLower().Contains(FiltroDeBusca)).ToList();
+                    .Where(x => x.Titulo.ToLower().Contains(FiltroDeBusca) || x.Descricao.ToLower().Contains(FiltroDeBusca) || x.AtoresFilmes
+                    .Select(af=>af.Ator.Nome.ToLower().Contains(FiltroDeBusca)).FirstOrDefault())
+                    .ToList();
                 return View(nameof(Index), resultadoDaBusca);
                 }
             return View(nameof(Index), result);
