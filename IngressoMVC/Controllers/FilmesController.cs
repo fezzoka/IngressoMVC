@@ -29,7 +29,7 @@ namespace IngressoMVC.Controllers
         [HttpPost]
         public IActionResult Criar(PostFilmeDTO filmeDto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 DadosDropdown();
                 return View();
@@ -172,5 +172,20 @@ namespace IngressoMVC.Controllers
             ViewBag.Cinemas = new SelectList(resp.Cinemas, "Id", "Nome");
             ViewBag.Produtores = new SelectList(resp.Produtores, "Id", "Nome");
         }
+
+            public IActionResult Buscar(string FiltroDeBusca)
+            {
+                var result = _context.Filmes.ToList();
+
+                if(!string.IsNullOrEmpty(FiltroDeBusca))
+                {
+                FiltroDeBusca = FiltroDeBusca.ToLower();
+                var resultadoDaBusca = result
+                    .Where(x => x.Titulo.ToLower().Contains(FiltroDeBusca) || x.Descricao.ToLower().Contains(FiltroDeBusca)).ToList();
+                return View(nameof(Index), resultadoDaBusca);
+                }
+            return View(nameof(Index), result);
+            }
+        }
     }
-}
+
