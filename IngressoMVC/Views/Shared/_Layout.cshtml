@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="bg-dark">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-danger border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-controller="Filmes" asp-action="Index"><i class="fa-solid fa-film"></i> Filmes</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -20,16 +20,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Atores" asp-action="Index"><i class="fa-solid fa-users-rectangle"></i> Atores</a>
+                            <a class="nav-link text-light" asp-controller="Filmes" asp-action="Index"><i class="fa-solid fa-film"></i> Filmes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Cinemas" asp-action="Index"><i class="fa-regular fa-tape"></i> Cinemas</a>
+                            <a class="nav-link text-light" asp-controller="Atores" asp-action="Index"><i class="fa-solid fa-users-rectangle"></i> Atores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Produtores" asp-action="Index"><i class="fa-solid fa-address-card"></i> Produtores</a>
+                            <a class="nav-link text-light" asp-controller="Cinemas" asp-action="Index"><i class="fa-regular fa-tape"></i> Cinemas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Categorias" asp-action="Index"><i class="fa-regular fa-table-list"></i> Categorias</a>
+                            <a class="nav-link text-light" asp-controller="Produtores" asp-action="Index"><i class="fa-solid fa-address-card"></i> Produtores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-controller="Categorias" asp-action="Index"><i class="fa-solid fa-clipboard-question"></i>Categorias</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +44,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - IngressoMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
